@@ -8,6 +8,8 @@ const API_KEY = '35861532-f4480698535ddfd2cf92b517e';
 const BASE_URL = 'https://pixabay.com/api/';
 let searchQuery = '';
 let pageQuery = 1;
+let cardsInPage = 0;
+let totalItems = 0;
 
 const refs = {
     searchForm: document.getElementById('search-form'),
@@ -36,14 +38,19 @@ async function fetchData(page, query) {
 async function getFirstGallary(page, query) {
     try {
         const data = await fetchData(page, query);
-
-        if (data.hits.length > 0) {
+        cardsInPage = data.hits.length;
+        console.log(cardsInPage)
+        if (cardsInPage > 0) {
             Notify.success(`Hooray! We found ${data.totalHits} images.`)
             renderGallary(data.hits);
-            
+            totalItems = data.totalHits - cardsInPage
             refs.loadMoreBtn.classList.remove('is-hidden');
+            if (totalItems <= 0) {
+                refs.loadMoreBtn.classList.add('is-hidden');
+                Notify.failure("We're sorry, but you've reached the end of search results.");
+            };
         } else {
-            Notify.failure("We're sorry, but you've reached the end of search results.");
+            Notify.failure("Sorry, there are no images matching your search query. Please try again.");
         }
     } catch (error) {
         Notify.failure(`${error}`);
@@ -91,13 +98,19 @@ async function onLoadMore(e) {
     pageQuery += 1;
     try {
         const data = await fetchData(pageQuery, searchQuery);
-        const maxPages = Math.ceil(data.totalHits / data.hits.length);
-
-        if (pageQuery < maxPages) {
+        
+        if (totalItems > 0) {
             renderGallary(data.hits);
-        } else if (pageQuery = maxPages) {
+            cardsInPage += cardsInPage
+            totalItems = data.totalHits - cardsInPage
+            console.log(totalItems)
+            if (totalItems <= 0) {
+                refs.loadMoreBtn.classList.add('is-hidden');
+                Notify.failure("We're sorry, but you've reached the end of search results.");
+            };
+        } else {
             refs.loadMoreBtn.classList.add('is-hidden');
-            Notify.failure("Hooray! We found totalHits images.");
+            Notify.failure("We're sorry, but you've reached the end of search results.");
         }
     }
     catch (error) {
