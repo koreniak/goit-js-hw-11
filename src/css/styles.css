@@ -12,6 +12,10 @@ body {
   line-height: 1.5;
 }
 
+a {
+  text-decoration: none;
+}
+
 ul {
   list-style: none;
   padding: 0px;
@@ -25,11 +29,119 @@ h1 {
 img {
   display: block;
   max-width: 100%;
-  height: auto;
-  border: 1px solid black;
+}
+
+.preview-img {
+  max-height: 200px;
+  background-size: cover;
+  object-fit: cover;
+  max-width: 100%;
 }
 
 .is-hidden {
   display: none;
+}
+
+.search-form {
+  position: sticky;
+  top: -1px;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color:beige;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.submit-btn {
+    width: 170px;
+    padding: 10px 15px;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    text-align: center;
+    cursor: pointer;
+    background-color:blueviolet;
+    color:aliceblue;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.submit-btn:hover,
+.submit-btn:focus {
+  background-color:cornflowerblue;
+}
+
+.load-more-btn {
+  width: 170px;
+  margin-top: 10px;
+  padding: 10px 15px;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  text-align: center;
+  cursor: pointer;
+  background-color: blueviolet;
+  color: aliceblue;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.load-more-btn:hover,
+.load-more-btn:focus {
+  background-color: cornflowerblue;
+}
+
+.load-more-field {
+  text-align: center;
+}
+
+.input-field {
+  width: 320px;
+  padding: 10px 15px;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.5;
+  border: 1px solid blueviolet;
+  border-radius: 3px;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  row-gap: 15px;
+  justify-content: space-around;
+}
+
+.photo-card {
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 5px;
+  display: flex;
+  box-shadow: 0 1px 6px #2e2f4214;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.info-item {
+  background-color: bisque;
+  border-radius: 15px;
+  padding: 3px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
